@@ -21,11 +21,12 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
     let { username, password } = req.body;
-
+    console.log(password)
     Users.findBy({ username })
         .then(users => {
             const user = users[0];
-
+            console.log('This is user?', user)
+            console.log('user password', user.password)
             if (user && bcrypt.compareSync(password, user.password)) {
                 // user exists and password is good
 

@@ -43,19 +43,6 @@ server.get("/", (req, res) => {
     res.json({ api: "up" });
 });
 
-server.get("/hash", (req, res) => {
-    try {
-        // read a password property from the headers
-        const password = req.headers.password;
 
-        // hash the password and it back. both the password and the hash
-        const rounds = process.env.HASH_ROUNDS || 8; // 8 is the number of rounds as 2 ^ 8
-        const hash = bcrypt.hashSync(password, rounds);
-
-        res.status(200).json({ password, hash });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 
 module.exports = server;
